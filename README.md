@@ -1,13 +1,12 @@
 # Fixing-initramfs-Errors : Boot-Failure
-When working with Linux systems, you may encounter boot failures with error messages such as:<br>
-"No init found. Try passing init bootarg."<br>
+When working with Linux systems, you may encounter boot failures with error messages such as:"No init found. Try passing init bootarg."<br>
 This issue can leave your system unbootable and stuck at the initramfs prompt.<br>
-
-This guide walks you through troubleshooting and fixing the problem step-by-step..<br>
 **Note :<br> This process will work for any Linux-based operating system that uses initramfs**<br> **If Advance > Recovery Mode fails**<br>
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+This guide walks you through troubleshooting and fixing the problem step-by-step..<br>
+
 **Step 1**<br>
 Error ( If you trying Advanced Options > Recovery Mode )<br>
 4.001176) BTRFS: Transaction aborted (error -17) <br>

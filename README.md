@@ -306,13 +306,13 @@ Run:
 [ Output should be : The output of the ls /mnt/ command shows that you have successfully mounted the root subvolume (@) to /mnt, as it displays typical system directories like bin, boot, etc, lib, opt, proc, root, and others. ]
 
 Check Root Directory Contents: It looks like your system's root filesystem has been successfully mounted. Let's check the contents of /mnt/root to verify the root user’s home directory. Run:
-ls /mnt/root
+***ls /mnt/root***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 33**
 Run:
-/mnt/root/ directory contains expected files such as Desktop, go, home, and snap. This confirms that your root filesystem is now properly mounted.
+***ls /mnt/root/*** directory contains expected files such as Desktop, go, home, and snap. This confirms that your root filesystem is now properly mounted.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 

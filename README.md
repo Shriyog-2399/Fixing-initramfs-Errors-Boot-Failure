@@ -1,6 +1,6 @@
 # Fixing-initramfs-Errors : Boot-Failure
-Below is the step-by-step documentation on how to resolve the initramfs error when the /mnt directory is missing at the root (/) level. This issue typically arises after an improper shutdown, leading to filesystem corruption or missing mount points.
-**Note : This process will work for any Linux-based operating system that uses initramfs**
+Below is the step-by-step documentation on how to resolve the initramfs error when the /mnt directory is missing at the root (/) level. This issue typically arises after an improper shutdown, leading to filesystem corruption or missing mount points.<br>
+**Note : This process will work for any Linux-based operating system that uses initramfs**<br>
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 **Step 1**<br>

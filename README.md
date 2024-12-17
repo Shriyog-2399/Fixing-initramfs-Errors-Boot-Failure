@@ -4,21 +4,21 @@ Below is the step-by-step documentation on how to resolve the initramfs error wh
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 **Step 1**<br>
-Error ( If you trying Advanced Options > Recovery Mode )
-4.001176) BTRFS: Transaction aborted (error -17) 
-4.001977] BTRFS: error (device nυπεθη1p2 state A) in _ btrfs_run_delayed_items: 1176: errno-17 Object already exists 
-4.0019981 BTRFS: error (device nume@nip2 state EA) in btrfs_replay_log:2116: errno=-17 Object already exists (Failed to recover log 
-4.0125041 BTRFS error (device numeθη1p2 state EA): open_ctree failed 
-mount: mounting /dev/nume@nip2 on /root failed : 
-File exists Failed to mount /dev/numeon1p2 as root file system.
-This error getting while starting parrot os
+Error ( If you trying Advanced Options > Recovery Mode )<br>
+4.001176) BTRFS: Transaction aborted (error -17) <br>
+4.001977] BTRFS: error (device nυπεθη1p2 state A) in _ btrfs_run_delayed_items: 1176: errno-17 Object already exists <br>
+4.0019981 BTRFS: error (device nume@nip2 state EA) in btrfs_replay_log:2116: errno=-17 Object already exists (Failed to recover log <br>
+4.0125041 BTRFS error (device numeθη1p2 state EA): open_ctree failed <br>
+mount: mounting /dev/nume@nip2 on /root failed : <br>
+File exists Failed to mount /dev/numeon1p2 as root file system.<br>
+This error getting while starting parrot os<br>
 
 
-This error indicates an issue with the BTRFS file system on your Parrot OS installation. The "Object already exists" errors suggest there is corruption or inconsistency in the BTRFS metadata. This often happens due to improper shutdowns, power loss, or disk issues.
+This error indicates an issue with the BTRFS file system on your Parrot OS installation. The "Object already exists" errors suggest there is corruption or inconsistency in the BTRFS metadata. This often happens due to improper shutdowns, power loss, or disk issues.<br>
 
-Confirm the partition is using BTRFS with:
+Confirm the partition is using BTRFS with:<br>
 
-***command : sudo blkid (if sudo not work try without sudo )***
+***command : sudo blkid (if sudo not work try without sudo )*** <br>
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 

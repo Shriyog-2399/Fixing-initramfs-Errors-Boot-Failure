@@ -24,7 +24,7 @@ Confirm the partition is using BTRFS with:
 
 **Step 2**
 First, try mounting the partition in read-only mode
-***sudo mount -o ro /dev/numeon1p2 /mnt***
+***command : sudo mount -o ro /dev/numeon1p2 /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ First, try mounting the partition in read-only mode
 If this fails, proceed with btrfs check
 This will scan the partition for errors without making changes.
 
-***sudo btrfs check --readonly /dev/numeon1p2*** ( after running this)
+***command : sudo btrfs check --readonly /dev/numeon1p2*** ( after running this)
 
 The output indicates that no errors were found during the btrfs check, meaning the file system seems to be intact. However, you’re still stuck at the (initramfs) prompt, which means the system isn't booting successfully.
 
@@ -43,20 +43,20 @@ Verify the Partition is Mountable
 If the /mnt directory does not exist, create it
 It should be created in the root directory (/).
 
-***sudo mkdir -p /mnt***
+***command : sudo mkdir -p /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 5**
 Then, try mounting the partition again:
-***sudo mount /dev/nvme0n1p2 /mnt***
+***command : sudo mount /dev/nvme0n1p2 /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 6**
 Now try mounting your partition:
 This will mount the partition /dev/nvme0n1p2 to the /mnt directory, making its contents accessible at /mnt.
-***sudo mount /dev/nvme0n1p2 /mnt ( if you get below error )***
+***command : sudo mount /dev/nvme0n1p2 /mnt ( if you get below error )***
 
 Error 
 Mount /dev/nume0n1p2/mnt [1199.
@@ -72,20 +72,20 @@ mount: mounting /dev/numeon1p2 on /mnt failed: Invalid argument
 **Step 7**
 The "Failed to recover log tree" error can often be resolved by clearing the log:
 This command clears the log tree, which might fix the corruption. 
-***sudo btrfs rescue zero-log /dev/nvme0n1p2***
+***command : sudo btrfs rescue zero-log /dev/nvme0n1p2***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 8**
 After running this, try mounting the partition again:
-***sudo mount /dev/nvme0n1p2 /mnt***
+***command : sudo mount /dev/nvme0n1p2 /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 9**
 If the command sudo mount /dev/nvme0n1p2 /mnt succeeded without any error, this means the partition /dev/nvme0n1p2 has been successfully mounted to the /mnt directory.
 Check /mnt
-***ls /mnt***
+***command : ls /mnt***
 
 If the file system is mounted correctly, you should see the contents of the root file system, including directories like /etc, /var, /usr, etc.
 
@@ -99,21 +99,21 @@ If after running sudo mount /dev/nvme0n1p2 /mnt you see @ and @home in the /mnt 
 **Step 10**
 You can mount these subvolumes one by one. For example:
 This will mount the root file system in /mnt.
-***sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt***
+***command : sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 11**
 This will mount the home directory in /mnt/home.
 ***sudo mkdir -p /mnt/home***
-***sudo mount -o subvol=@home /dev/nvme0n1p2 /mnt/home***
+***command : sudo mount -o subvol=@home /dev/nvme0n1p2 /mnt/home***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 12**
 Verify
-***ls /mnt***
-***ls /mnt/home***
+***command : ls /mnt***
+***command : ls /mnt/home***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -121,36 +121,36 @@ Verify
 
 Rebuild the System (if Necessary)
 If you're trying to repair your system or fix boot issues, you can now chroot into your root file system:
-***sudo mount --bind /dev /mnt/dev***
-***sudo mount --bind /proc /mnt/proc***
-***sudo mount --bind /sys /mnt/sys***
-***sudo chroot /mnt***
+***command : sudo mount --bind /dev /mnt/dev***
+***command : sudo mount --bind /proc /mnt/proc***
+***command : sudo mount --bind /sys /mnt/sys***
+***command : sudo chroot /mnt***
 Inside the chroot, you can update or reinstall your bootloader, regenerate the initramfs, or perform any other system repair.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 14**
 Exit the chroot:
-***exit***
+***command : exit***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 15**
 Unmount the subvolumes:
-***sudo umount /mnt/home***
-***sudo umount /mnt***
+***command : sudo umount /mnt/home***
+***command : sudo umount /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 16**
 Reboot the system
-***sudo reboot***
+***command : sudo reboot***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 17**
 You can mount these subvolumes one by one. For example:
-***sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt***
+***command : sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt***
 
 Error
 You may getting this error 
@@ -163,7 +163,7 @@ This command mounts the @ subvolume directly to /mnt. If you still face issues, 
 
 **Step 18**
 Try again
-***sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt***
+***command : sudo mount -o subvol=@ /dev/nvme0n1p2 /mnt***
 
 Error 
 (initranfs) mount -o subvol=@ /dev/nume0n1p2 /mnt 
@@ -180,13 +180,13 @@ mount: mounting /dev/nume0n1p2 on /mnt failed: Invalid argument
 
 **Step 19**
 Check available subvolumes on the partition:
-***sudo btrfs subvolume list /mnt***
+***command : sudo btrfs subvolume list /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 20**
 Force the mount command to use the BTRFS file system driver by adding the -t btrfs option:
-***sudo mount -t btrfs -o subvol=@ /dev/nvme0n1p2 /mnt***
+***command : sudo mount -t btrfs -o subvol=@ /dev/nvme0n1p2 /mnt***
 
 Error
 mount: mounting /dev/nume0n1p2 on /mnt failed: Device or resource busy
@@ -195,7 +195,7 @@ mount: mounting /dev/nume0n1p2 on /mnt failed: Device or resource busy
 
 **Step 21**
 Run the following command to check all currently mounted partitions:
-***mount | grep nvme0n1p2***
+***command : mount | grep nvme0n1p2***
 
 If Output 
 /dev/nume0n1p2 on /mnt type btrfs (rw,relatime, ssd, discard=async,space_cache=u2, suhuolid-5,subuol=/)
@@ -205,7 +205,7 @@ If Output
 
 **Step 22**
 Check if the @ Subvolume is Mounted Since the partition is already mounted, let's confirm which subvolumes are active. You can run:
-***sudo btrfs subvolume list /mnt***
+***command : udo btrfs subvolume list /mnt***
 
 Around 428 id entries getting. ( So much logs, entries you may get )
 [It seems you're encountering a large number of subvolumes listed under /mnt as shown by the btrfs subvolume list /mnt output. Since there are numerous entries, scrolling manually to a specific subvolume is impractical.]
@@ -217,7 +217,7 @@ You can filter the subvolume list to search for specific subvolumes, like @, usi
 This will show you all subvolumes that contain @ in their path. It will help you quickly identify the subvolume you're looking for
 
 Again try to run 
-***sudo btrfs subvolume list /mnt | grep '@'***
+***command : sudo btrfs subvolume list /mnt | grep '@'***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -230,7 +230,7 @@ Error
 **Step 24**
 The output of ls /mnt showing @ and @home suggests that your Btrfs subvolumes have been mounted correctly, as these are common names for Btrfs subvolumes.
 
-***ls /mnt***
+***command : ls /mnt***
 Output [@ @home]
 [Since you are seeing the subvolumes @ and @home when running ls /mnt, it indicates that the system has successfully mounted the root and home subvolumes. Before rebooting, here’s a quick checklist to ensure everything is in order:]
 
@@ -238,7 +238,7 @@ Output [@ @home]
 
 **Step 25**
 Check that the subvolumes are mounted correctly:
-***mount | grep '/mnt'***
+***command : mount | grep '/mnt'***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -254,7 +254,7 @@ The output you provided suggests that the /dev/nvme0n1p2 partition is mounted co
 
 **Step 26**
 Mount the @ subvolume explicitly: Now, mount the @ subvolume explicitly using the following command:
-***mount -o subvol=@ /dev/nume0n1p2 /mnt***
+***command : mount -o subvol=@ /dev/nume0n1p2 /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -269,7 +269,7 @@ If again output is
 
 **Step 28**
 Use ps to list processes and grep to find processes related to /mnt or /dev/nvme0n1p2
-***ps aux | grep /mnt***
+***command : ps aux | grep /mnt***
 [Output -: 610 root grep /mnt]
 
 It seems that no active processes are using /mnt or the device /dev/nvme0n1p2, as the output shows only the grep command itself. it should be safe to unmount or try mounting again. Here’s what you can do next
@@ -278,7 +278,7 @@ It seems that no active processes are using /mnt or the device /dev/nvme0n1p2, a
 
 **Step 29**
 This should show processes that are interacting with the mount point or device.
-***ps aux | grep /dev/nvme0n1p2***
+***command : ps aux | grep /dev/nvme0n1p2***
 [Output -: 612 root]
 
 It seems that no active processes are using /mnt or the device /dev/nvme0n1p2, as the output shows only the grep command itself. it should be safe to unmount or try mounting again. Here’s what you can do next
@@ -287,7 +287,7 @@ It seems that no active processes are using /mnt or the device /dev/nvme0n1p2, a
 
 **Step 30**
 Now run 
-***sudo mount -t btrfs -o subvol=@ /dev/nvme0n1p2 /mnt***
+***command : sudo mount -t btrfs -o subvol=@ /dev/nvme0n1p2 /mnt***
 
 If you're not getting any error after running the mount command (sudo mount -t btrfs -o subvol=@ /dev/nvme0n1p2 /mnt), it means the filesystem has been successfully mounted!
 
@@ -295,30 +295,30 @@ If you're not getting any error after running the mount command (sudo mount -t b
 
 **Step 31**
 You can confirm that the mount was successful by running:
-***sudo mount | grep /mnt***
+***command : sudo mount | grep /mnt***
 [/dev/nume0n1p2 on /mnt type btrfs (rw,relatime, ssd, discard=async,space_cache=u2, subuolid=256, subvol=/@)]
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 32**
 Run:
-***ls /mnt/***
+***command : ls /mnt/***
 [ Output should be : The output of the ls /mnt/ command shows that you have successfully mounted the root subvolume (@) to /mnt, as it displays typical system directories like bin, boot, etc, lib, opt, proc, root, and others. ]
 
 Check Root Directory Contents: It looks like your system's root filesystem has been successfully mounted. Let's check the contents of /mnt/root to verify the root user’s home directory. Run:
-***ls /mnt/root***
+***command : ls /mnt/root***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 33**
 Run:
-***ls /mnt/root/*** directory contains expected files such as Desktop, go, home, and snap. This confirms that your root filesystem is now properly mounted.
+***command : ls /mnt/root/*** directory contains expected files such as Desktop, go, home, and snap. This confirms that your root filesystem is now properly mounted.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 34**
 Run:
-***cat /mnt/etc/fstab***
+***command : cat /mnt/etc/fstab***
 Output should be 
 [
 # <file system> <mount point> <type> <options> <dump> <pass>
@@ -332,12 +332,12 @@ UUID=******-****-****-****-******** /home btrfs subvol=@home,defaults,noatime,no
 **Step 35**
 After saving the changes, you can try mounting again to verify everything is correct.
 This will mount all filesystems defined in fstab.
-***mount -a***
+***command : mount -a***
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 36**
 Run:
 Reboot your machine 
-***reboot or reboot -f***
+***command : reboot or reboot -f***
 

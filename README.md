@@ -23,7 +23,7 @@ Confirm the partition is using BTRFS with:
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 **Step 2**
-First, try mounting the partition in read-only mode
+First, try mounting the partition in read-only mode<br>
 ***command : sudo mount -o ro /dev/numeon1p2 /mnt***
 
 --------------------------------------------------------------------------------------------------------------------------------------------

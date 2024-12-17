@@ -270,7 +270,7 @@ If again output is <br>
 **Step 28**<br>
 Use ps to list processes and grep to find processes related to /mnt or /dev/nvme0n1p2<br>
 ***command : ps aux | grep /mnt***<br>
-[Output -: 610 root grep /mnt]<br>
+[Output -: 610 root]<br>
 
 It seems that no active processes are using /mnt or the device /dev/nvme0n1p2, as the output shows only the grep command itself. it should be safe to unmount or try mounting again. Here’s what you can do next<br>
 

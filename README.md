@@ -5,7 +5,7 @@ This issue can leave your system unbootable and stuck at the **initramfs** promp
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-This guide walks you through troubleshooting and fixing the problem step-by-step..<br>
+**This guide walks you through troubleshooting and fixing the problem step-by-step.** <br>
 
 **Step 1**<br>
 Error ( If you trying Advanced Options > Recovery Mode )<br>
